@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/RecipeGrid.css";
 
-const API_KEY = "d4aefed76eed4168a6e1eb67f3405059"; // Replace with your actual API key
+const API_KEY = "API-key"; // Replace with your actual API key
 
 interface Recipe {
   id: number;
