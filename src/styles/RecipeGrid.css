@@ -1,0 +1,58 @@
+/* ===== Recipe Grid - Professional Single Row ===== */
+
+.recipe-grid {
+  --card-min-width: 220px; /* Control card density */
+  --gap: 24px; /* Consistent spacing */
+  
+  text-align: center;
+  padding: 3rem clamp(1rem, 5vw, 4rem); /* Responsive padding */
+  background: rgba(23, 59, 69, 0.6);
+}
+
+.recipe-grid h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem); /* Fluid typography */
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.recipe-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+  gap: var(--gap);
+  width: min(100%, 1400px); /* Contain to max-width */
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem); /* Fluid side padding */
+}
+
+.recipe-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-card img {
+  width: 100%;
+  aspect-ratio: 4/3; /* Perfect image proportions */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.recipe-card h3 {
+  font-size: 1.1rem;
+  color: #173B45;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== No Media Queries Needed ===== */
+/* Auto-adjusts from 1-5 cards based on --card-min-width */

@@ -1,0 +1,24 @@
+/* src/assets/styles/ScanPage.css */
+body {
+  background-color: #173B45; /* The same background color as the hero section */
+  margin: 0;
+  font-family: 'Arial', sans-serif; /* You can set a default font for consistency */
+}
+
+.scan-page {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: zoomIn var(--transition-speed) ease-in-out forwards;
+  }
+  
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
