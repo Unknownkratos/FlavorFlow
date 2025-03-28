@@ -1,58 +1,71 @@
-/* ===== Recipe Grid - Professional Single Row ===== */
+/* ===== Recipe Grid - Upgraded Professional Version ===== */
 
 .recipe-grid {
-  --card-min-width: 220px; /* Control card density */
-  --gap: 24px; /* Consistent spacing */
+  --card-min-width: 240px; /* Slightly wider for better layout */
+  --gap: 24px; /* Maintain spacing */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --shadow-light: rgba(255, 255, 255, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
   
   text-align: center;
-  padding: 3rem clamp(1rem, 5vw, 4rem); /* Responsive padding */
-  background: rgba(23, 59, 69, 0.6);
+  padding: 3rem clamp(1rem, 5vw, 4rem);
+  background: linear-gradient(135deg, rgba(23, 59, 69, 0.7), rgba(15, 42, 51, 0.8));
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
 }
 
 .recipe-grid h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem); /* Fluid typography */
+  font-size: clamp(1.5rem, 3vw, 2rem);
   margin-bottom: 1.5rem;
   color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .recipe-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
   gap: var(--gap);
-  width: min(100%, 1400px); /* Contain to max-width */
+  width: min(100%, 1400px);
   margin: 0 auto;
-  padding: 0 clamp(1rem, 3vw, 2rem); /* Fluid side padding */
+  padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .recipe-card {
-  background: white;
+  background: var(--glass-bg);
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.25s ease;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px var(--shadow-dark), inset 0 2px 4px var(--shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(12px);
+  overflow: hidden;
 }
 
 .recipe-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 16px var(--shadow-dark), inset 0 2px 4px var(--shadow-light);
 }
 
 .recipe-card img {
   width: 100%;
-  aspect-ratio: 4/3; /* Perfect image proportions */
+  aspect-ratio: 4/3;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.recipe-card:hover img {
+  opacity: 0.9;
 }
 
 .recipe-card h3 {
-  font-size: 1.1rem;
-  color: #173B45;
-  font-weight: 600;
+  font-size: 1.2rem;
+  color: black;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
 }
-
-/* ===== No Media Queries Needed ===== */
-/* Auto-adjusts from 1-5 cards based on --card-min-width */

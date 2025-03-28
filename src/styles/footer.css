@@ -1,13 +1,23 @@
 .footer {
-    text-align: center;
-    padding: 1rem;
-    background: #222;
-    color: white;
-  }
-  
-  .social-links a {
-    color: lightgray;
-    margin: 0 10px;
-    text-decoration: none;
-  }
-  
+  text-align: center;
+  padding: 1rem;
+  background: linear-gradient(90deg, #173B45, #0A1E20);
+  color: white;
+}
+
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: lightgray;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: 0.3s ease-in-out;
+}
+
+.social-links a:hover {
+  color: white;
+  transform: scale(1.1);
+}

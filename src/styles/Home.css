@@ -1,19 +1,35 @@
 .home-container {
   font-family: "Poppins", sans-serif;
-  color: #173B45; /* Dark green for freshness */
-  background-color: #f5f7f2; /* Soft, fresh color */
+  color: #173B45;
+  background: linear-gradient(180deg, #f5f7f2 30%, #d4e6dc 100%);
   padding-bottom: 50px;
 }
 
 .trending-section {
-  padding: 40px 10%;
+  padding: 50px 10%;
   text-align: center;
-  background-color: #173B45;
+  background: #173B45;
+  color: white;
+  border-radius: 15px;
 }
 
 .section-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #173B45;
+  font-size: 2.2rem;
+  font-weight: 700;
   margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* Smooth Fade-In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

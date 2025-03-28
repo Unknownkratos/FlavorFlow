@@ -1,24 +1,135 @@
-/* src/assets/styles/SearchPage.css */
+/* Global Styles */
 body {
-  background-color: #173B45; /* The same background color as the hero section */
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #f5f7f2 30%, #d4e6dc 100%);
   margin: 0;
-  font-family: 'Arial', sans-serif; /* You can set a default font for consistency */
+  padding: 0;
 }
 
+/* Search Page */
 .search-page {
-    opacity: 0;
-    transform: translateX(-10px);
-    animation: slideIn var(--transition-speed) ease-in-out forwards;
-  }
-  
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateX(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Search Bar */
+.search-bar input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  border: 2px solid #173b45; /* Dark Blue */
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.search-bar input:focus {
+  border-color: #50b3a2; /* Light Blue */
+}
+
+/* Filter Buttons */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.filters button {
+  padding: 10px 20px;
+  background-color: #173b45; /* Dark Blue */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.filters button:hover {
+  background-color: #50b3a2; /* Light Blue */
+}
+
+.filters button.active {
+  background-color: #e8f1f2; /* Light Grey */
+  color: #173b45; /* Dark Blue */
+}
+
+/* Recipe Grid */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.recipe-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.recipe-card-body {
+  padding: 15px;
+}
+
+.recipe-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #173b45; /* Dark Blue */
+}
+
+.recipe-card-description {
+  color: #616161; /* Grey */
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 15px;
+  background-color: #173b45; /* Dark Blue */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.pagination button:hover {
+  background-color: #50b3a2; /* Light Blue */
+}
+
+.pagination button.active {
+  background-color: #50b3a2; /* Light Blue */
+  font-weight: bold;
+}
+
+.pagination button:disabled {
+  background-color: #e8f1f2; /* Light Grey */
+  cursor: not-allowed;
+}

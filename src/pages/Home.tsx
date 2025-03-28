@@ -9,6 +9,7 @@ const Home: React.FC = () => {
     <div className="home-container">
       <HeroSection />
       <section className="trending-section">
+        <h2 className="section-title">Popular Recipes</h2>
         <RecipeGrid />
       </section>
       <Footer />

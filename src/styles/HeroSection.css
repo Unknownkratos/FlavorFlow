@@ -1,7 +1,6 @@
-/* ===== Hero Section Styling ===== */
 .hero {
   background: url("../assets/images/wallpaper.jpeg") no-repeat center center/cover;
-  height: 60vh; /* Adjusted height for better visual proportion */
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +9,7 @@
   overflow: hidden;
 }
 
+/* Parallax Effect */
 .hero::before {
   content: "";
   position: absolute;
@@ -17,7 +17,19 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(23, 59, 69, 0.6); /* Semi-transparent overlay for better contrast */
+  background: rgba(23, 59, 69, 0.5);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Smooth Fade-In Effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .hero-overlay {
@@ -25,83 +37,53 @@
   color: white;
   padding: 3rem;
   border-radius: 15px;
-  max-width: 3000px; /* Restrict max-width for text box */
-  width: 100%;
-  backdrop-filter: blur(8px); /* Blur effect for overlay */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Soft shadow for a floating effect */
+  max-width: 800px;
+  width: 90%;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .hero-overlay h1 {
-  font-size: clamp(2rem, 8vw, 3.5rem); /* Responsive font size */
-  margin-bottom: 1rem;
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.5px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Soft text shadow for readability */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-overlay p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.85); /* Slightly faded white for a soft tone */
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .search-bar {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
-  transition: all 0.3s ease-in-out;
+  gap: 10px;
 }
 
 .search-bar input {
-  width: 280px;
+  width: 300px;
   padding: 12px;
-  border-radius: 20px;
-  border: 2px solid #fff;
+  border-radius: 25px;
+  border: none;
   outline: none;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
   font-size: 1rem;
-  transition: 0.3s ease-in-out;
-}
-
-.search-bar input:focus {
-  border-color:  #B43F3F; /* Focus state with a soft green border */
-  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .search-bar button {
-  background-color: #B43F3F;
-  color: #fff;
+  background: #B43F3F;
+  color: white;
   border: none;
   padding: 12px 20px;
-  cursor: pointer;
-  border-radius: 20px;
+  border-radius: 25px;
   font-size: 1.1rem;
-  margin-left: 10px;
+  cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 
 .search-bar button:hover {
-  background-color:  #173B45; /* Slightly darker shade on hover */
-}
-
-@media (max-width: 768px) {
-  .hero {
-    height: 50vh; /* Slightly reduce height on smaller screens */
-  }
-
-  .hero-overlay h1 {
-    font-size: 2rem; /* Adjust font size for smaller screens */
-  }
-
-  .hero-overlay p {
-    font-size: 1rem; /* Adjust font size for smaller screens */
-  }
-
-  .search-bar input {
-    width: 220px; /* Smaller input width on mobile */
-  }
+  background: #173B45;
 }
