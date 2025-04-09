@@ -1,93 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* Import the design system */
+@import "./styles/theme.css";
+
 /* Root-level styles */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family);
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color-scheme: light;
+  color: var(--text-primary);
+  background-color: var(--neutral-50);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Link styles */
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 /* Global body styles */
 body {
   margin: 0;
   padding: 0;
-  display: block; /* Changed from flex to block */
+  display: block;
   width: 100%;
   min-height: 100vh;
-  background-color: #272424;
-  color: rgba(255, 0, 0, 0.87);
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
 }
 
 /* Headings */
 h1 {
-  font-size: 3.2em;
+  font-size: var(--font-size-4xl);
   line-height: 1.1;
   margin: 0;
 }
 
 /* Button styling */
 button {
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-base);
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: var(--font-family);
+  background-color: var(--primary);
+  color: var(--text-on-primary);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all var(--transition-fast);
 }
 
 button:hover {
-  border-color: #646cff;
+  background-color: var(--primary-dark);
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Light mode preferences */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ee0a0a;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #be0000;
-  }
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
 }
 
 /* Ensure root container takes full screen */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
 #root {
-  display: block; /* Changed from flex to block */
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
 }
@@ -95,25 +76,25 @@ html, body {
 /* Media Queries for responsiveness */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2em; /* Smaller heading for mobile devices */
+    font-size: var(--font-size-3xl);
   }
-  
+
   button {
-    padding: 0.5em 1em; /* Adjust button padding on mobile */
+    padding: var(--spacing-2) var(--spacing-3);
   }
 }
 
 /* Ensure elements adjust properly for all screen sizes */
 @media (max-width: 480px) {
   body {
-    padding: 0 10px; /* Add some padding to avoid elements touching screen edges */
+    padding: 0;
   }
 
   h1 {
-    font-size: 1.8em;
+    font-size: var(--font-size-2xl);
   }
 
   button {
-    width: 100%; /* Buttons will take full width on small screens */
+    width: 100%;
   }
 }

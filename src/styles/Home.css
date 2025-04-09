@@ -1,35 +1,194 @@
 .home-container {
-  font-family: "Poppins", sans-serif;
-  color: #173B45;
-  background: linear-gradient(180deg, #f5f7f2 30%, #d4e6dc 100%);
-  padding-bottom: 50px;
+  min-height: 100vh;
+  background-color: var(--neutral-50);
 }
 
-.trending-section {
-  padding: 50px 10%;
+.features-section {
+  padding: var(--spacing-20) 0;
+  background-color: var(--background);
+}
+
+.features-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-6);
   text-align: center;
-  background: #173B45;
-  color: white;
-  border-radius: 15px;
 }
 
-.section-title {
-  font-size: 2.2rem;
+.features-title {
+  font-size: var(--font-size-3xl);
   font-weight: 700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  animation: fadeInUp 0.8s ease-in-out;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-3);
 }
 
-/* Smooth Fade-In Animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+.features-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-12);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-8);
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-6);
+  border-radius: var(--border-radius-xl);
+  background-color: var(--background);
+  transition: all var(--transition-normal);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: rgba(46, 125, 50, 0.1);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-4);
+  color: var(--primary);
+  transition: all var(--transition-fast);
+}
+
+.feature-card:hover .feature-icon {
+  background-color: var(--primary);
+  color: var(--text-on-primary);
+}
+
+.feature-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-3);
+}
+
+.feature-description {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cta-section {
+  padding: var(--spacing-16) 0;
+  background-color: var(--neutral-100);
+}
+
+.cta-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-6);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+}
+
+.cta-content {
+  flex: 1;
+}
+
+.cta-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.cta-description {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-6);
+  line-height: 1.6;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background-color: var(--primary);
+  color: var(--text-on-primary);
+  border: none;
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-3) var(--spacing-6);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cta-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.cta-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.cta-image img {
+  max-width: 100%;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .cta-container {
+    flex-direction: column;
+    text-align: center;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .cta-content {
+    order: 1;
+  }
+
+  .cta-image {
+    order: 0;
+    margin-bottom: var(--spacing-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .features-section {
+    padding: var(--spacing-12) 0;
+  }
+
+  .features-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .features-grid {
+    gap: var(--spacing-6);
+  }
+
+  .cta-section {
+    padding: var(--spacing-12) 0;
+  }
+
+  .cta-title {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .features-container,
+  .cta-container {
+    padding: 0 var(--spacing-4);
   }
 }
