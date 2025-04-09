@@ -4,7 +4,19 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import "../styles/SearchPage.css"
-import { SearchIcon, Filter, ChevronDown, X, Clock, Users, Star, BookmarkPlus } from "lucide-react"
+import {
+  SearchIcon,
+  Filter,
+  ChevronDown,
+  X,
+  Clock,
+  Users,
+  Star,
+  BookmarkPlus,
+  Heart,
+  Share2,
+  Sliders,
+} from "lucide-react"
 import Footer from "../components/Footer"
 
 interface Recipe {
@@ -15,6 +27,8 @@ interface Recipe {
   readyInMinutes?: number
   servings?: number
   healthScore?: number
+  cuisines?: string[]
+  diets?: string[]
 }
 
 const SearchPage: React.FC = () => {
@@ -29,6 +43,7 @@ const SearchPage: React.FC = () => {
   const [selectedDiets, setSelectedDiets] = useState<string[]>([])
   const [selectedMealTypes, setSelectedMealTypes] = useState<string[]>([])
   const [selectedTime, setSelectedTime] = useState<string>("any")
+  const [sortBy, setSortBy] = useState("relevance")
 
   const recipesPerPage = 12
 
@@ -39,6 +54,12 @@ const SearchPage: React.FC = () => {
     { value: "15", label: "15 minutes or less" },
     { value: "30", label: "30 minutes or less" },
     { value: "60", label: "1 hour or less" },
+  ]
+  const sortOptions = [
+    { value: "relevance", label: "Relevance" },
+    { value: "rating", label: "Highest Rated" },
+    { value: "time", label: "Cooking Time" },
+    { value: "newest", label: "Newest" },
   ]
 
   // Fetch all available categories
@@ -80,6 +101,8 @@ const SearchPage: React.FC = () => {
             readyInMinutes: Math.floor(Math.random() * 45 + 15),
             servings: Math.floor(Math.random() * 4 + 1),
             healthScore: Math.floor(Math.random() * 15 + 85),
+            cuisines: getRandomCuisines(),
+            diets: getRandomDiets(),
           }))
           allRecipes = [...allRecipes, ...recipesWithCategory]
         })
@@ -100,6 +123,20 @@ const SearchPage: React.FC = () => {
     fetchAllRecipes()
   }, [])
 
+  // Helper function to get random cuisines
+  const getRandomCuisines = () => {
+    const cuisines = ["Italian", "Mexican", "Asian", "American", "Mediterranean", "Indian", "French", "Greek"]
+    const numCuisines = Math.floor(Math.random() * 2) + 1
+    return shuffleArray(cuisines).slice(0, numCuisines)
+  }
+
+  // Helper function to get random diets
+  const getRandomDiets = () => {
+    const diets = ["Vegetarian", "Vegan", "Gluten-Free", "Dairy-Free", "Low-Carb", "Keto", "Paleo", "High-Protein"]
+    const numDiets = Math.floor(Math.random() * 3)
+    return shuffleArray(diets).slice(0, numDiets)
+  }
+
   // Handle search and filtering
   useEffect(() => {
     let results = [...recipes]
@@ -116,16 +153,8 @@ const SearchPage: React.FC = () => {
 
     // Filter by diet
     if (selectedDiets.length > 0) {
-      // This is a simplified example - in a real app, you'd have actual diet data
-      // Here we're just simulating diet filtering based on recipe name and category
       results = results.filter((recipe) => {
-        const recipeName = recipe.strMeal.toLowerCase()
-        const recipeCategory = (recipe.strCategory || "").toLowerCase()
-
-        return selectedDiets.some((diet) => {
-          const dietLower = diet.toLowerCase()
-          return recipeName.includes(dietLower) || recipeCategory.includes(dietLower)
-        })
+        return selectedDiets.some((diet) => recipe.diets?.includes(diet))
       })
     }
 
@@ -147,9 +176,26 @@ const SearchPage: React.FC = () => {
       results = results.filter((recipe) => (recipe.readyInMinutes || 0) <= maxTime)
     }
 
+    // Sort results
+    switch (sortBy) {
+      case "rating":
+        results.sort((a, b) => (b.healthScore || 0) - (a.healthScore || 0))
+        break
+      case "time":
+        results.sort((a, b) => (a.readyInMinutes || 0) - (b.readyInMinutes || 0))
+        break
+      case "newest":
+        // For demo purposes, just shuffle
+        results = shuffleArray([...results])
+        break
+      default:
+        // relevance - no additional sorting
+        break
+    }
+
     setFilteredRecipes(results)
     setCurrentPage(1) // Reset to first page when filter/search changes
-  }, [searchQuery, activeFilter, recipes, selectedDiets, selectedMealTypes, selectedTime])
+  }, [searchQuery, activeFilter, recipes, selectedDiets, selectedMealTypes, selectedTime, sortBy])
 
   // Helper function to shuffle array
   const shuffleArray = (array: any[]) => {
@@ -189,12 +235,17 @@ const SearchPage: React.FC = () => {
     setSelectedTime(time)
   }
 
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(event.target.value)
+  }
+
   const clearAllFilters = () => {
     setActiveFilter("all")
     setSelectedDiets([])
     setSelectedMealTypes([])
     setSelectedTime("any")
     setSearchQuery("")
+    setSortBy("relevance")
   }
 
   // Pagination logic
@@ -209,6 +260,7 @@ const SearchPage: React.FC = () => {
     <div className="search-page">
       <div className="search-hero">
         <div className="search-hero-content">
+          <span className="search-badge">Recipe Explorer</span>
           <h1 className="search-title">Discover Recipes</h1>
           <p className="search-subtitle">Find the perfect recipe for any meal, diet, or occasion</p>
           <div className="search-bar-container">
@@ -324,12 +376,16 @@ const SearchPage: React.FC = () => {
             </p>
           </div>
           <div className="results-sort">
-            <label htmlFor="sort-select">Sort by:</label>
-            <select id="sort-select" className="sort-select">
-              <option value="relevance">Relevance</option>
-              <option value="rating">Highest Rated</option>
-              <option value="time">Cooking Time</option>
-              <option value="newest">Newest</option>
+            <label htmlFor="sort-select" className="sort-label">
+              <Sliders size={16} />
+              Sort by:
+            </label>
+            <select id="sort-select" className="sort-select" value={sortBy} onChange={handleSortChange}>
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -364,19 +420,39 @@ const SearchPage: React.FC = () => {
                       className="recipe-image"
                       onError={(e) => {
                         e.currentTarget.onerror = null
-                        e.currentTarget.src = "https://via.placeholder.com/300x300/f5f5f5/2e7d32?text=No+Image"
+                        e.currentTarget.src = "https://via.placeholder.com/300x300/f5f5f5/e65100?text=No+Image"
                       }}
                       loading="lazy"
                     />
-                    <button className="bookmark-button" aria-label="Bookmark recipe">
-                      <BookmarkPlus size={20} />
-                    </button>
+                    <div className="recipe-actions">
+                      <button className="recipe-action-button bookmark" aria-label="Bookmark recipe">
+                        <BookmarkPlus size={18} />
+                      </button>
+                      <button className="recipe-action-button like" aria-label="Like recipe">
+                        <Heart size={18} />
+                      </button>
+                      <button className="recipe-action-button share" aria-label="Share recipe">
+                        <Share2 size={18} />
+                      </button>
+                    </div>
                     <div className="recipe-badge">
                       <Star size={14} className="badge-icon" />
                       <span>{recipe.healthScore || Math.floor(Math.random() * 15 + 85)}</span>
                     </div>
                   </div>
                   <div className="recipe-content">
+                    <div className="recipe-tags">
+                      {recipe.diets?.slice(0, 2).map((diet, index) => (
+                        <span key={index} className="recipe-tag">
+                          {diet}
+                        </span>
+                      ))}
+                      {recipe.cuisines?.slice(0, 1).map((cuisine, index) => (
+                        <span key={index} className="recipe-tag cuisine">
+                          {cuisine}
+                        </span>
+                      ))}
+                    </div>
                     <h3 className="recipe-title">{recipe.strMeal}</h3>
                     <div className="recipe-meta">
                       <div className="meta-item">
@@ -388,7 +464,6 @@ const SearchPage: React.FC = () => {
                         <span>{recipe.servings || Math.floor(Math.random() * 4 + 1)} servings</span>
                       </div>
                     </div>
-                    <div className="recipe-category">{recipe.strCategory}</div>
                     <button className="view-recipe-button">View Recipe</button>
                   </div>
                 </div>

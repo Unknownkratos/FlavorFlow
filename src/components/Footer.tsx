@@ -1,6 +1,6 @@
 import type React from "react"
 import "../styles/Footer.css"
-import { Facebook, Instagram, Twitter, Leaf, Mail, Phone, MapPin } from "lucide-react"
+import { Facebook, Instagram, Twitter, UtensilsCrossed, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
 
 const Footer: React.FC = () => {
   return (
@@ -8,27 +8,28 @@ const Footer: React.FC = () => {
       <div className="footer-content">
         <div className="footer-section brand">
           <div className="logo-container">
-            <Leaf className="logo-icon" />
+            <UtensilsCrossed className="logo-icon" />
             <h2 className="footer-logo">FlavorFlow</h2>
           </div>
           <p className="brand-description">
-            Discover healthy recipes tailored to your lifestyle and ingredients you already have.
+            Discover healthy recipes tailored to your lifestyle and ingredients you already have. Our mission is to make
+            healthy eating simple, delicious, and accessible to everyone.
           </p>
           <div className="social-links">
             <a href="#" className="social-link" aria-label="Facebook">
-              <Facebook size={20} />
+              <Facebook size={18} />
             </a>
             <a href="#" className="social-link" aria-label="Instagram">
-              <Instagram size={20} />
+              <Instagram size={18} />
             </a>
             <a href="#" className="social-link" aria-label="Twitter">
-              <Twitter size={20} />
+              <Twitter size={18} />
             </a>
           </div>
         </div>
 
         <div className="footer-section links">
-          <h3 className="footer-heading">Quick Links</h3>
+          <h3 className="footer-heading">Explore</h3>
           <ul className="footer-links">
             <li>
               <a href="/">Home</a>
@@ -80,12 +81,25 @@ const Footer: React.FC = () => {
               <Phone size={16} className="contact-icon" />
               <span>+1 (555) 123-4567</span>
             </div>
+            <div className="contact-item">
+              <MapPin size={16} className="contact-icon" />
+              <span>123 Healthy St, Foodville, CA 94123</span>
+            </div>
+          </div>
+          <div className="newsletter">
+            <h4 className="newsletter-heading">Get recipes in your inbox</h4>
+            <div className="newsletter-form">
+              <input type="email" placeholder="Your email address" className="newsletter-input" />
+              <button className="newsletter-button">
+                <ArrowRight size={18} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>© 2025 FlavorFlow. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} FlavorFlow. All rights reserved.</p>
         <div className="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>

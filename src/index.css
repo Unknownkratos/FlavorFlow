@@ -6,8 +6,8 @@
 /* Root-level styles */
 :root {
   font-family: var(--font-family);
-  line-height: 1.5;
-  font-weight: 400;
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-normal);
   color-scheme: light;
   color: var(--text-primary);
   background-color: var(--neutral-50);
@@ -15,6 +15,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 /* Global body styles */
@@ -27,10 +28,22 @@ body {
   overflow-x: hidden;
 }
 
+/* Selection styling */
+::selection {
+  background-color: var(--primary-light);
+  color: var(--text-on-primary);
+}
+
+/* Focus styling for accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 /* Headings */
 h1 {
   font-size: var(--font-size-4xl);
-  line-height: 1.1;
+  line-height: var(--line-height-tight);
   margin: 0;
 }
 
@@ -40,16 +53,18 @@ button {
   border: 1px solid transparent;
   padding: var(--spacing-2) var(--spacing-4);
   font-size: var(--font-size-base);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-family: var(--font-family);
   background-color: var(--primary);
   color: var(--text-on-primary);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-normal);
 }
 
 button:hover {
   background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 button:focus,
@@ -97,4 +112,30 @@ body {
   button {
     width: 100%;
   }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

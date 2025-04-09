@@ -1,6 +1,6 @@
 import type React from "react"
 import "../styles/ScanPage.css"
-import { Camera, Upload, ImageIcon, RefreshCw, ChevronRight } from "lucide-react"
+import { Camera, Upload, ImageIcon, RefreshCw, ChevronRight, Scan, Clock } from "lucide-react"
 import Footer from "../components/Footer"
 
 const ScanPage: React.FC = () => {
@@ -8,6 +8,7 @@ const ScanPage: React.FC = () => {
     <div className="scan-page">
       <div className="scan-hero">
         <div className="scan-hero-content">
+          <span className="scan-badge">Smart Technology</span>
           <h1 className="scan-title">Scan Your Ingredients</h1>
           <p className="scan-subtitle">
             Take a photo of your ingredients or upload an image to discover delicious recipes you can make right now.
@@ -45,8 +46,9 @@ const ScanPage: React.FC = () => {
         <div className="scan-interface">
           <div className="scan-preview">
             <div className="camera-placeholder">
-              <Camera size={48} className="camera-icon" />
+              <Scan size={48} className="camera-icon pulse" />
               <p>Point your camera at ingredients</p>
+              <div className="scan-frame"></div>
               <button className="camera-button">Take Photo</button>
             </div>
           </div>
@@ -95,7 +97,15 @@ const ScanPage: React.FC = () => {
           <div className="examples-grid">
             <div className="example-card">
               <div className="example-image">
-                <img src="/placeholder.svg?height=200&width=200" alt="Vegetables" />
+                <img
+                  src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                  alt="Fresh Vegetables"
+                />
+                <div className="example-overlay">
+                  <span className="example-time">
+                    <Clock size={14} /> 2 mins ago
+                  </span>
+                </div>
               </div>
               <div className="example-content">
                 <h4>Fresh Vegetables</h4>
@@ -104,7 +114,15 @@ const ScanPage: React.FC = () => {
             </div>
             <div className="example-card">
               <div className="example-image">
-                <img src="/placeholder.svg?height=200&width=200" alt="Fruits" />
+                <img
+                  src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                  alt="Mixed Fruits"
+                />
+                <div className="example-overlay">
+                  <span className="example-time">
+                    <Clock size={14} /> 5 mins ago
+                  </span>
+                </div>
               </div>
               <div className="example-content">
                 <h4>Mixed Fruits</h4>
@@ -113,7 +131,15 @@ const ScanPage: React.FC = () => {
             </div>
             <div className="example-card">
               <div className="example-image">
-                <img src="/placeholder.svg?height=200&width=200" alt="Pantry Items" />
+                <img
+                  src="https://images.unsplash.com/photo-1584473457409-ce95a89c0fff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                  alt="Pantry Items"
+                />
+                <div className="example-overlay">
+                  <span className="example-time">
+                    <Clock size={14} /> 10 mins ago
+                  </span>
+                </div>
               </div>
               <div className="example-content">
                 <h4>Pantry Items</h4>

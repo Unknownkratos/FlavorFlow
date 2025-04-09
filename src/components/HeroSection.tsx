@@ -1,24 +1,34 @@
+"use client"
+
 import type React from "react"
 import "../styles/HeroSection.css"
-import { Search, ArrowRight } from "lucide-react"
+import { Search, ArrowRight, ChevronDown } from "lucide-react"
 
 const HeroSection: React.FC = () => {
+  const scrollToRecipes = () => {
+    const recipesSection = document.getElementById("popular-recipes")
+    if (recipesSection) {
+      recipesSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <div className="hero">
       <div className="hero-content">
         <div className="hero-text">
+          <span className="hero-badge">Healthy Eating Made Simple</span>
           <h1 className="hero-title">
-            Discover <span className="highlight">Healthy</span> & <span className="highlight">Delicious</span> Recipes
+            Discover <span className="highlight">Delicious</span> Recipes With Your Ingredients
           </h1>
           <p className="hero-subtitle">
-            Find expert advice and dietitian-approved meals tailored for your lifestyle and ingredients you already
-            have.
-          </p> <br />
+            Find expert-crafted recipes tailored to your lifestyle and the ingredients you already have in your kitchen.
+          </p>
+          <br />
 
           <div className="search-container">
             <div className="search-bar">
               <Search className="search-icon" />
-              <input type="text" placeholder="Search recipes or ingredients..." />
+              <input type="text" placeholder="Enter ingredients you have..." />
               <button className="search-button">Find Recipes</button>
             </div>
             <div className="search-tags">
@@ -71,6 +81,11 @@ const HeroSection: React.FC = () => {
           <p className="stat-label">Happy Users</p>
         </div>
       </div>
+
+      <button className="scroll-down-button" onClick={scrollToRecipes}>
+        <span className="sr-only">Scroll down</span>
+        <ChevronDown size={24} />
+      </button>
     </div>
   )
 }
